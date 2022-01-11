@@ -1,0 +1,147 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Boston House Price Prediction</title>
+	<!-- BootStrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+    body{background:#d9d9d961;}
+        .card {margin-top:10px;}
+    .jumbotron{
+		background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/96/ISH_WC_Boston4.jpg');
+		background-position: top;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 220px;
+	}
+	.headerTitle{
+		padding-top: 30px;
+		font-weight: bolder;
+		color: whitesmoke;
+		text-shadow: 2px 5px 5px black;
+		font-size: 30px;
+		}
+	.popBox {
+				position: absolute;
+				z-index: 999;
+				width: 100%;
+				top: 0;
+				left: 0;
+			}
+			.popUpCont {
+				background: white;
+				max-width: 400px;
+				text-align: center;
+				border: 6px solid #7a797961;
+				border-radius: 10px;
+				padding: 10px;
+				position: relative;
+				margin: 300px auto;
+				color: #000000b8;
+			}
+			.closePopUp{
+				position: absolute;
+				padding: 5px 12px;
+				background: #a1a1a1;
+				color: white;
+				right: 5px;
+				border-radius: 5px;
+				bottom: 77%;
+				cursor:pointer;
+			}
+
+    </style>
+
+</head>
+
+<body>
+	<div class="jumbotron">
+        <h3 class="headerTitle">Boston House Price Predictor</h3>
+    </div>
+	<div class="container">
+		<form action="\predict" method="POST">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"> CRIM</h5>
+							<input type="text" name="CRIM"  placeholder="CRIM"  required="required" class = "form-control"> </div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"> NOX</h5>
+							<input type="text" name="NOX"  placeholder="NOX"  required="required" class = "form-control"> </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"> RM</h5>
+							<input type="text" name="RM"  placeholder="RM"  required="required" class = "form-control"> </div>
+						</div>
+					</div>
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"> DIS </h5>
+							<input type="text" name="DIS"  placeholder="DIS"  required="required" class = "form-control"> </div>
+						</div>
+					</div>
+				</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">LSTAT </h5>
+							<input type="text" name="LSTAT"  placeholder="LSTAT"  required="required" class = "form-control"> \
+						</div>
+
+						</div>
+					</div>
+			<div class="col-sm-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title"> </h5>
+							<p>CRIM - per capita crime rate by town</p>
+							<p>NOX - nitric oxides concentration (parts per 10 million)</p>
+							<p>RM - average number of rooms per dwelling</p>
+							<p>DIS - weighted distances to five Boston employment centres</p>
+							<p>LSTAT - lower status of the population</p>
+
+						</div>
+					</div>
+			</div>
+			<div class="" style="margin-top:20px; text-align:center;">
+			<input type="submit" value="submit" class="btn btn-secondary form-control" style="max-width:300px;" onclick="/predict">
+            </div>
+	</form>
+	</div>
+   {% if price is defined %}
+		<div class="popupcontrol">
+			<div class="popBox">
+			<div class="popUpCont">
+				<div class="row">
+					<div class="col-md-12"><h3 style="margin-top:30px" >Predicted House Price</h3></div>
+					<div class="col-md-12" style="margin-top:10px;"><h1>{{price}}$ </h1></div>
+					<span class="closePopUp" onclick="closePopup()">X</span>
+				</div>
+			</div>
+		</div>
+		</div>
+	{% else %}
+		<div></div>
+	{% endif %}
+</body>
+<script>
+	function closePopup(){
+		document.querySelector('.popupcontrol').style.display="none";
+	}
+</script>
+</html>
